@@ -29,11 +29,11 @@ const TodoHeadBlock = styled.div`
   }
 `;
 
-function TodoHead() {
+function TodoHead({ length }) {
   return (
     <TodoHeadBlock>
       <h1>TO DO LIST</h1>
-      <div className="tasks-left">남은 개수: 2개</div>
+      <div className="tasks-left">남은 개수: {length}개</div>
     </TodoHeadBlock>
   );
 }

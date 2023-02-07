@@ -19,11 +19,16 @@ const TodoListBlock = styled.div`
   /* align-content: center; */
 `;
 
-function TodoList({ todos }) {
+function TodoList({ todos, onRemove, onToggle }) {
   return (
     <TodoListBlock>
       {todos.map((todo) => (
-        <TodoItem todo={todo} key={todo.id} />
+        <TodoItem
+          todo={todo}
+          key={todo.id}
+          onRemove={onRemove}
+          onToggle={onToggle}
+        />
       ))}
       {/* <TodoItem text="책읽기" done={true} />
       <TodoItem text="저녁먹기" done={true} />

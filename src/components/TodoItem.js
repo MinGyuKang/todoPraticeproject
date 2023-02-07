@@ -78,13 +78,15 @@ const Text = styled.div`
     `}
 `;
 
-function TodoItem({ todo }) {
-  const { text, done } = todo;
+function TodoItem({ todo, onRemove, onToggle }) {
+  const { id, text, done } = todo;
   return (
     <TodoItemBlock>
-      <CheckCircle done={done}>{done && <IoCheckmarkSharp />}</CheckCircle>
+      <CheckCircle done={done} onClick={() => onToggle(id)}>
+        {done && <IoCheckmarkSharp />}
+      </CheckCircle>
       <Text done={done}>{text}</Text>
-      <Remove>
+      <Remove onClick={() => onRemove(id)}>
         <IoTrashOutline />
       </Remove>
     </TodoItemBlock>

@@ -49,8 +49,21 @@ function App() {
     };
     // setTodos(...todos, todo);
     // 위에 코드로 할 경우 todos.map is not a function오류 발생
+    // 중괄호로 안감싸서 그런듯...?
     setTodos(todos.concat(todo));
     nextId.current += 1;
+  };
+
+  const onRemove = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
+  const onToggle = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, done: !todo.done } : todo
+      )
+    );
   };
 
   return (
@@ -58,8 +71,8 @@ function App() {
       <div className="App">
         <GlobalStyle />
         <TodoTemplate>
-          <TodoHead />
-          <TodoList todos={todos} />
+          <TodoHead length={todos.length} />
+          <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
           <TodoCreate onSubmit={handleSubmit} />
         </TodoTemplate>
       </div>
